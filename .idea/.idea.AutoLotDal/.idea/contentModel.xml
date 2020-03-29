@@ -8,12 +8,16 @@
         <e p="DataOperations" t="Include">
           <e p="InventoryDal.cs" t="Include" />
         </e>
+        <e p="Models" t="Include">
+          <e p="Car.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
       </e>
       <e p="AutoLotDal.sln" t="IncludeFlat" />
+      <e p="Models" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
     <e p="C:\Users\clien\.Rider2018.3\system\extResources" t="IncludeRecursive" />
