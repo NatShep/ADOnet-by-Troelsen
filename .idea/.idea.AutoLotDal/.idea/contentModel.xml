@@ -17,7 +17,6 @@
         </e>
       </e>
       <e p="AutoLotDal.sln" t="IncludeFlat" />
-      <e p="Models" t="Include" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
     <e p="C:\Users\clien\.Rider2018.3\system\extResources" t="IncludeRecursive" />

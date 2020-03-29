@@ -29,29 +29,173 @@ namespace AutoLotDal.DataOperations
 
         private void CloseConnection() => _sqlConnection.Close();
 
+        // иммеет ли смысл в таком методе? Как грамотно его называть?
+        private Car ProjectionFromDataReaderToCar(SqlDataReader dataReader)
+        {
+            return new Car
+            {
+                CarId = (int) dataReader["CarId"],
+                Color = (string) dataReader["Color"],
+                Make = (string) dataReader["Make"],
+                PetName = (string) dataReader["PetName"]
+            };
+        }
+
         public List<Car> GetAllInventory()
         {
-            OpenConnection();
+            OpenConnection();  
             List<Car> inventory = new List<Car>();
             string sql = "Select * from Inventory";
             using (SqlCommand command = new SqlCommand(sql, _sqlConnection))
             {
                 command.CommandType = CommandType.Text;
+                // commandBehavior.CloseConnection == autoClosing Connection
                 SqlDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
                 while (dataReader.Read())
                 {
-                    inventory.Add(new Car
-                    {
-                        CarId = (int)dataReader["CarId"],
-                        Color= (string)dataReader["Color"],
-                        Make = (string)dataReader["Make"],
-                        PetName = (string)dataReader["PetName"]
-                    });
+                    inventory.Add(ProjectionFromDataReaderToCar(dataReader));
                 }
                 dataReader.Close();
             }
 
             return inventory;
         }
+
+        public Car GetCar(int id)
+        {
+            OpenConnection();  
+            Car car = new Car();
+            string sql = $"Select * From Inventory where CarId = {id}";
+            using (SqlCommand command = new SqlCommand(sql, _sqlConnection))
+            {
+                command.CommandType = CommandType.Text;
+                // commandBehavior.CloseConnection == autoClosing Connection
+                SqlDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dataReader.Read())
+                    car = ProjectionFromDataReaderToCar(dataReader);
+                dataReader.Close();
+            }
+            return car;
+        }
+
+        public void InsertAuto(string color, string make, string petName)
+        {
+            OpenConnection(); 
+            string sql = $"Insert Into Inventory (Make,Color,PetName) Values ('{make}','{color}','{petName}'";
+
+            using (SqlCommand command = new SqlCommand(sql, _sqlConnection))
+            {
+                command.CommandType = CommandType.Text;
+                command.ExecuteNonQuery();
+            }
+            CloseConnection();
+        }
+        
+        // using parameters
+        public void InsertAuto(Car car)
+        {
+            OpenConnection(); 
+            string sql = $"Insert Into Inventory (Make,Color,PetName) Values (@Make,@Color,@PetName)";
+
+            using (SqlCommand command = new SqlCommand(sql, _sqlConnection))
+            {
+                SqlParameter parameter = new SqlParameter
+                {
+                    ParameterName = "@Make",
+                    Value = car.Make,
+                    SqlDbType = SqlDbType.Char,
+                    Size = 10
+                };
+                command.Parameters.Add(parameter);
+                
+                parameter = new SqlParameter()
+                {
+                    ParameterName = "@Color",
+                    Value = car.Color,
+                    SqlDbType = SqlDbType.Char,
+                    Size = 10
+                };
+                command.Parameters.Add(parameter);
+                
+                parameter = new SqlParameter()
+                {
+                    ParameterName = "@PetName",
+                    Value = car.PetName,
+                    SqlDbType = SqlDbType.Char,
+                    Size = 10
+                };
+                command.Parameters.Add(parameter);
+                
+                command.ExecuteNonQuery();
+            }
+            CloseConnection();
+        }
+
+        public void DeleteCar(int id)
+        {
+            OpenConnection();
+            string sql = $"Delete From Inventory where CarId='{id}'";
+            using (SqlCommand command = new SqlCommand(sql,_sqlConnection))
+            {
+                try
+                {
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }   
+                catch (SqlException e)
+                {
+                    Exception error = new Exception("Sorry! That car is on erder!",e);
+                    throw error;
+                }
+            }
+            CloseConnection();
+        }
+
+        public void UpdateCarPetName(int id, string newPetName)
+        {
+            OpenConnection();
+            string sql = $"Update Inventory Set PetName = '{newPetName}' " +
+                         $"Where CarId = '{id}'";
+            using (SqlCommand command =new SqlCommand(sql,_sqlConnection))
+            {
+                command.ExecuteNonQuery();
+            }
+            CloseConnection();
+        }
+        
+        //using stored procedure
+        public string LookUpPetName(int carId)
+        {
+            OpenConnection();
+            string carPetName;
+
+            using (SqlCommand command = new SqlCommand("GetPetName", _sqlConnection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter param = new SqlParameter()
+                {
+                    ParameterName = "@carId",
+                    SqlDbType = SqlDbType.Int,
+                    Value = carId,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(param);
+
+                param = new SqlParameter()
+                {
+                    ParameterName = "@PetName",
+                    SqlDbType = SqlDbType.Char,
+                    Size = 10,
+                    Direction = ParameterDirection.Output
+                };
+                command.Parameters.Add(param);
+
+                command.ExecuteNonQuery();
+                carPetName = (string) command.Parameters["@petName"].Value;
+            }
+
+            return carPetName;
+        }
+        
     }
 }
