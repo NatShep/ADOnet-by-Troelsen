@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e82b5fe4-56e0-4714-91d7-0a2712bd7d8d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutoLotDal/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutoLotDal/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoLotDal.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AutoLotDal.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoLotDal/DataOperations/InventoryDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutoLotDal/DataOperations/InventoryDal.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +12,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AutoLotDal/DataOperations/InventoryDal.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1099">
@@ -55,6 +53,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AutoLotClient/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <marker date="1585490342809" expanded="true" signature="57:171" ph="{...}" />
+                <marker date="1585490342809" expanded="true" signature="90:169" ph="{...}" />
+                <marker date="1585490342809" expanded="true" signature="143:163" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AutoLotDal/Models/Car.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,6 +86,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/AutoLotDal/DataOperations/InventoryDal.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutoLotClient/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AutoLotDal/Models/Car.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -82,6 +94,7 @@
       <list>
         <option value="$PROJECT_DIR$/AutoLotDal/Models/Car.cs" />
         <option value="$PROJECT_DIR$/AutoLotDal/DataOperations/InventoryDal.cs" />
+        <option value="$PROJECT_DIR$/AutoLotClient/Program.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +119,7 @@
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="AutoLotDal" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="AutoLotDal" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="AutoLotClient" type="24d0babc:SolutionExplorerModelNode" />
             </path>
           </expand>
           <select />
@@ -136,6 +149,26 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/AutoLotClient/bin/Debug/AutoLotClient.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/AutoLotClient/bin/Debug" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/AutoLotClient/AutoLotClient.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="Console" />
+      <option name="PROJECT_TFM" value=".NETFramework,Version=v4.7.2" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -146,12 +179,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585482451743</updated>
-      <workItem from="1585482454786" duration="6210000" />
+      <workItem from="1585482454786" duration="6611000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6210000" />
+    <option name="totallyTimeSpent" value="6611000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -164,6 +197,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Image Layers" />
@@ -178,9 +212,10 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Performance Profiler" />
+      <window_info anchor="bottom" id="Build" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -263,6 +298,17 @@
             <marker date="1585489941180" expanded="true" signature="5801:6654" ph="{...}" />
             <marker date="1585489941180" expanded="true" signature="5955:6159" ph="{...}" />
             <marker date="1585489941180" expanded="true" signature="6268:6472" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AutoLotClient/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1585490342809" expanded="true" signature="57:171" ph="{...}" />
+            <marker date="1585490342809" expanded="true" signature="90:169" ph="{...}" />
+            <marker date="1585490342809" expanded="true" signature="143:163" ph="{...}" />
           </folding>
         </state>
       </provider>
