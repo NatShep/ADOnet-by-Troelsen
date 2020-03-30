@@ -12,7 +12,7 @@ namespace AutoLotDal.DataOperations
         private SqlConnection _sqlConnection = null;
 
         public InventoryDal() :
-            this(@"СТРОКА ПОДКЛЮЧЕНИЯ")
+            this(@"Server=desktop-l8k07nf\sqlexpress;Initial Catalog=AutoLot;User Id=sa;Password=123")
         {
         }
 
@@ -195,6 +195,57 @@ namespace AutoLotDal.DataOperations
             }
 
             return carPetName;
+        }
+
+        public void ProcessCreditRisk(bool throwEx, int custId)
+        {
+            OpenConnection();
+            string fName;
+            string lName;
+            var cmdSelect = new SqlCommand($"Select * from Customers Where CustId={custId}",_sqlConnection);
+            using (var datareader = cmdSelect.ExecuteReader())
+            {
+                if (datareader.HasRows)
+                {
+                    datareader.Read();
+                    fName = (string) datareader["FirstName"];
+                    lName = (string) datareader["LastName"];             
+                }
+                else
+                {
+                    CloseConnection();
+                    Console.WriteLine("There is no customer with this ID");
+                    return;
+                }
+                datareader.Close();
+
+                
+                var cmdRemove = new SqlCommand($"Delete from Customers where CustId={custId}",_sqlConnection);
+                var cmdInsert = new SqlCommand($"Insert Into CreditRisks (FirstName,LastName) Values('{fName}','{lName}')",_sqlConnection);
+
+                SqlTransaction tx = null;
+                try
+                {
+                    tx = _sqlConnection.BeginTransaction();
+
+                    cmdInsert.Transaction = tx;
+                    cmdRemove.Transaction = tx;
+
+                    cmdInsert.ExecuteNonQuery();
+                    cmdRemove.ExecuteNonQuery();
+
+                    if (throwEx)
+                        throw new Exception("DatabaseError! Tx failed...");
+                    tx.Commit();
+                    Console.WriteLine();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    tx?.Rollback();
+                }
+                finally{CloseConnection();}
+            }
         }
         
     }
