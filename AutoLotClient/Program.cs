@@ -29,7 +29,7 @@ namespace AutoLotClient
             Console.WriteLine("CarId\tMake\tColor\tPetName");
             foreach (var car in list)
             {
-                Console.WriteLine($"{car.CarId}\t{car.Make}\t{car.Color}\t{car.PetName}");
+                Console.WriteLine($"{car.Id}\t{car.Make}\t{car.Color}\t{car.PetName}");
             }
         }
         public static void MoveCustomer()
@@ -63,7 +63,7 @@ namespace AutoLotClient
             Console.WriteLine("CarId\tMake\tColor\tPetName");
             foreach (var car in list)
             {
-                Console.WriteLine($"{car.CarId}\t{car.Make}\t{car.Color}\t{car.PetName}");
+                Console.WriteLine($"{car.Id}\t{car.Make}\t{car.Color}\t{car.PetName}");
             }
             
         }

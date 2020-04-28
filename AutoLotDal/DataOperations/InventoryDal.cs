@@ -29,15 +29,15 @@ namespace AutoLotDal.DataOperations
 
         private void CloseConnection() => _sqlConnection.Close();
 
-        // иммеет ли смысл в таком методе? Как грамотно его называть?
+
         private Car ProjectionFromDataReaderToCar(SqlDataReader dataReader)
         {
             return new Car
             {
-                CarId = (int) dataReader["CarId"],
+                Id = (int) dataReader["Id"],
                 Color = (string) dataReader["Color"],
                 Make = (string) dataReader["Make"],
-                PetName = (string) dataReader["PetName"]
+                PetName = (string) dataReader["PetName"],
             };
         }
 
